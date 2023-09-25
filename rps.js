@@ -27,8 +27,14 @@ function playGame() {
     let result = gameResult(getPlayerChoice(), getComputerChoice());
     
     switch(result){
-        case 'player': return 'Player wins this round!';
-        case 'computer': return 'Computer wins this round!';
+        case 'player': 
+            playerScore++; 
+            console.log(playerScore);
+            return 'Player wins this round!';
+        case 'computer': 
+            computerScore++;
+            console.log(computerScore);
+            return 'Computer wins this round!';
         default: return 'Draw!';
     }
 }
@@ -52,8 +58,25 @@ function gameResult(playerChoice, computerChoice) {
     }
 }
 
+function determineWinner() {
+    if (playerScore > computerScore) {
+        return `Player wins the game ${playerScore}-${computerScore}`
+    }
+    else if (playerScore < computerScore) {
+        return `Computer wins the game ${computerScore}-${playerScore}`
+    }
+    else {
+        return `Competitors draw ${playerScore}-${computerScore}`
+    }
+}
+
+let playerScore = 0;
+let computerScore = 0;
+
 console.log('Rock: 0 \nPaper: 1\nScissors: 2');
 
 for (let i=0; i<5; i++){
     console.log(playGame());
 }
+
+console.log(determineWinner());
